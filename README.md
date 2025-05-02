@@ -23,3 +23,5 @@ Connect the display to the controller:
 * SCL to D1
 * SDA to D2
 * GND to GND
+
+[Firmware for the controller](https://github.com/Wubbe/Leon-s-display/blob/main/Leon-s-display.ino.bin)
