@@ -1,4 +1,4 @@
-# Leon-s-display
+# Leon's Display
 An ESP8266 microcontroller with a small screen to display relevant data
 
 This project started when I became involved in 'Hollandse Luchten', a citizen science project to measure particulate matter (PM2.5) in your environment. For that purpose, every member recieved a PM2.5 sensor to measure air quality. To be able to see the current PM2.5 level, it was necessary to go to a website with current readings. I thought that if that reading was displayed permanent, the user could better couple changes in the environment (smell of smoke, wind, fog, etc.) with changes in the PM2.5 reading.
