@@ -24,12 +24,12 @@ Connect the display to the controller:
 * SDA to D2
 * GND to GND
  
-Connect a USB cable to your computer and verify that the display has been connected well. Then flash the firmware to the controller. This can be done in two ways.
-* download the compiled firmware file and us a web flasher to write the firmware to the board (recommended).
+Connect a USB cable to your computer and verify that the display has been connected well. Then flash the firmware to the controller. This can be done in two ways:
+* download the compiled firmware file and us a web flasher like [esp.huhn.me](https://esp.huhn.me/)to write the firmware to the board (recommended).
 * open the source file in the Arduino development environment and compile/build the file and write it to the controller (more difficult).
 
 [Download the Firmware here](https://github.com/Wubbe/Leon-s-display/blob/main/Leon-s-display.ino.bin)
 
-Future versions of the firmware can be updated via the interface of the controller itself.
+Future versions of the firmware can be updated via the interface of the controller itself. It has the possibility to upgrade OTA (over the air).
 
 
