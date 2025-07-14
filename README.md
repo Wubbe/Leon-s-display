@@ -15,17 +15,10 @@ So, I figured that a small display and an ESP microcontroller could do the trick
 ## How to build one
 
 ### What you need:
-* Wemos D1 Mini V3, ESP8266 Development board. [Buy here](https://www.otronic.nl/en/wemos-d1-mini-v3-esp8266-wifi-ch340-development-bo.html)
+* Wemos D1 Mini V3 or V4, ESP8266 Development board. [Buy here](https://www.otronic.nl/en/wemos-d1-mini-v3-esp8266-wifi-ch340-development-bo.html)
 * SSD1306 Mini OLED display 0.96 inch 128x64 I2C. [Buy here](https://www.otronic.nl/en/mini-oled-display-white-096-inch-128x64-i2c.html)
 * A 3D printed case. [download here](https://www.thingiverse.com/thing:2884823)
 * Some thin wire
- 
-Connect a USB cable to your computer and verify that the display has been connected well. Then flash the firmware to the controller. This can be done in two ways:
-* download the [compiled firmware file](https://github.com/Wubbe/Leon-s-display/blob/main/Leon-s-display.ino.bin) and use a web flasher like [esp.huhn.me](https://esp.huhn.me/) or a dedicated flasher like [Nodemcu Pyflasher](https://github.com/marcelstoer/nodemcu-pyflasher) to write the firmware to the board (recommended).
-* open the source file in the Arduino development environment and compile/build the file and write it to the controller (more difficult).
-* Order a pre-flashed controller, including display and a 3D printed case by sending me an email. I can do the soldering also, if you prefer.
-
-Future versions of the firmware can be updated via the interface of the controller itself. It has the possibility to upgrade OTA (over the air).
 
 ### Assembly
 
@@ -37,8 +30,14 @@ If you haven't bought the pre-soldered version, connect the display to the contr
 
 Using some (hot)glue, put the display in the case (connector facing down, see picture). Slide the controller board into the horizontal slot of the case, see picture.
 Close the case
+ 
+Connect a USB cable to your computer and verify that the display has been connected well. Then flash the firmware to the controller. This can be done in two ways:
+* download the [compiled firmware file](https://github.com/Wubbe/Leon-s-display/blob/main/Leon-s-display.ino.bin) and use a web flasher like [esp.huhn.me](https://esp.huhn.me/) or a dedicated flasher like [Nodemcu Pyflasher](https://github.com/marcelstoer/nodemcu-pyflasher) to write the firmware to the board (recommended).
+* open the source file in the Arduino development environment and compile/build the file and write it to the controller (more difficult).
 
-Done.
+Or, order a pre-flashed controller, including display and a optionally a 3D printed case by sending me an email. I can do the soldering also, if you prefer.
+
+Future versions of the firmware can be updated via the interface of the controller itself. It has the possibility to upgrade OTA (over the air).
 
 If you connect the controller to power, using a USB-C cable, check if the display shows something.
 
@@ -54,11 +53,14 @@ If you don't want to solder and flash the firmware, just email me for a pre-flas
 
 ## How to use it
 
+If the device is build and assembled well, it must be configured to retrieve and show the data of your choice. This is achieved in two steps:
+- Setup WiFi
+- Setup Sensor
+
 ### Setup WiFi
 
-To be able to operate, the display must be connected to the internet. This is done in multiple steps. The first step is that the display appears as an access point 'Setup Leon's Display'. Connect to this access point using the WiFi settings of your phone or laptop. Then open a browser and type the ip number that is on the display. In most cases it will be 192.168.1.4
-Now the setup page of the display appears. Press the button 'Setup WiFi'. Fill in your WiFi settings (ssid and password). Reset the device as is shown. Press the reset button.
-If everything went well, the device now connects to your WiFi network and can be accessed by typing `leon-s-display.local` in your browser.
+To be able to operate, the display must be connected to the internet. This is done in multiple steps. The first step is that after the display is connected to power (a usb charger) the display appears as an access point with the name 'Setup Leon's Display'. Connect to this access point using the WiFi settings of your phone or laptop. Then open a browser and type the ip number that is mentioned on the display. In most cases it will be 192.168.1.4. Now the setup page of the display appears. Press the button 'Setup WiFi'. Fill in your WiFi settings (ssid and password). Reset the device as is shown.
+If everything went well, the device now resets and connects to your WiFi network and can be accessed by typing `leon-s-display.local` in your browser. If that does not work look at the display and type the ip number that is mentioned there. Again, the Setup page of the display should appear.
 
 Next step is to setup the sensor of your choice.
 
@@ -66,9 +68,9 @@ Next step is to setup the sensor of your choice.
 
 #### Hollandse Luchten
 
-To be able to show data of your Hollandse Luchten sensor, it is necessary to do some investigation. Goal is to find the sensor number to be filled in in the Setup pages of the display. This is done using your browser, using your sensor number. In this case, my sensor is used as an example. This sensor has number 465.
+To be able to show data of your Hollandse Luchten sensor, it is necessary to do some investigation. Goal is to find the sensor number to be filled in on the Setup page of the display. This is done using your browser, using your sensor number. In this case, my (old) sensor is used as an example. This sensor has number 465.
 
-First of all, retrieve all data from the sensor. : `(https://api-samenmeten.rivm.nl/v1.0/Things?$filter=contains(name,‘HLL_hl_device_465’))`
+First of all, retrieve all data from the sensor: `(https://api-samenmeten.rivm.nl/v1.0/Things?$filter=contains(name,‘HLL_hl_device_465’))` (change 465 into the number of your sensor)
 
 This wil return the following response:
 ```
@@ -107,7 +109,7 @@ This wil return the following response:
 
 Now copy the link mentioned after `Datastreams`. So: `(https://api-samenmeten.rivm.nl/v1.0/Things(7270)/Datastreams)`
 
-This results in the following response.
+This results in the following response containing a list of measurements the sensor can return.
 ```
 {
   "value": [
@@ -179,16 +181,29 @@ This results in the following response.
 }
 ```
 
-This response contains all the data that the sensor returns. Temperature, Humidity, PM2.5 (calibrated) and PM2.5 (not calibrate). We take the calibrated version as it has received a correction to avoid too high values that aren't accurate. Using this PM2.5 value, look at he link after Observations and note the number that is mentioned there.
+This response contains all the data that the sensor returns. Temperature, Humidity, PM2.5 (calibrated) and PM2.5 (not calibrated). We take the calibrated version as it has a correction to avoid too high values that aren't accurate. Using this PM2.5 value, look at he link after Observations and note the number that is mentioned there.
+In this case it is number 38617.
 
-In this case it is number 38617. We have found it. Finally!
+We have found it. Finally!
 
 Now, go to the setup page of the display, choose 'Hollandse Luchten (Sodaq) as sensor and fill 38617 (fill in your number) as sensor number.
 
-Done.
+Press the 'Save' button on the setup page and do a Reset also. Now the current PM2.5 value should appear.
 
 #### Sensor community (server)
-#### Sensor community (local)
-#### Open Meteo data (wind, temperatue)
 
-In the 'Setup sensor' screen, select 'Open Meteo'. Now entering the lat/long coordinates of your desired location is important. The most easy way is to go to [Google Maps](https://maps.google.com) and go to the desired location, left-mousbutton press reveals the lat/long coordinates. For example '52xxxxxxx, 4xxxxxx' for the center of Haarlem.
+Using a sensor community (Luftdaten) sensor is easy. Just select `'Sensor Community (server)'` from the list of sensors and fill in the sensor number. Every Sensor Community sensor has a 5-digit number that can be found in multiple ways, for instance using the map `(https://sensor.comunity)`. Search for your sensor on this map and click on it. Now the number appears, together with the current PM value. This number must be entered in the corresponding field.
+
+#### Sensor community (local)
+
+It is also possible to retrieve the data from your own sensor directly, if it is part of the same WiFi network as the display is connected to. In this case select as sensor 'Sensor community (local)' and fill in the sensor number in the corresponding field.
+
+#### Scapeler
+
+In future versions, the Scapeler sensors will be supported. They are working on a new version of their API. If that is finished I will update the firmware to support these sensors too.
+
+#### Open Meteo data (wind, temperature)
+
+In the 'Setup sensor' screen, select 'Open Meteo'. Now entering the lat/long coordinates of your desired location is important. The most easy way is to go to [Google Maps](https://maps.google.com) and go to the desired location, left-mousbutton press reveals the lat/long coordinates. For example '52.38150558737995, 4.635996278654743' for the center of Haarlem (Grote Markt). Selecting the coordinates from the menu copies them. You can paste the values in the lat/long fields in the setup page.
+
+After 'Save' and 'Reset', the display should show the current wind force, temperature, direction and gusts of wind. Also the wind force unit can be chosen between Bft,km/h, m/s or Knots.
