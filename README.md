@@ -10,6 +10,8 @@ So, I figured that a small display and an ESP microcontroller could do the trick
 * Wind speed, gusts, direction and temperature for a given Lat/Long location
 * PM2.5 level of Scapeler sensors (Future, work in progress)
 
+![Leon's display](/leon's-display.jpg)
+
 ## How to build one
 
 ### What you need:
