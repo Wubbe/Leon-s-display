@@ -72,7 +72,8 @@ Select the sensor of your choice in the `Setup Sensor` screen.
 
 To be able to show data of your Hollandse Luchten sensor, it is necessary to do some investigation. Goal is to find the sensor number to be filled in on the Setup page of the display. This is done using your browser, using your sensor number. In this case, my (old) sensor is used as an example. This sensor has number 465.
 
-First of all, retrieve all data from the sensor: `(https://api-samenmeten.rivm.nl/v1.0/Things?$filter=contains(name,‘HLL_hl_device_465’))` (change 465 into the number of your sensor)
+First of all, retrieve all data from the sensor:
+[`https://api-samenmeten.rivm.nl/v1.0/Things?$filter=contains(name,'HLL_hl_device_465')`](https://api-samenmeten.rivm.nl/v1.0/Things?$filter=contains(name,'HLL_hl_device_465')) (change 465 into the number of your sensor)
 
 This wil return the following response:
 ```
@@ -109,7 +110,7 @@ This wil return the following response:
 }
 ```
 
-Now copy the link mentioned after `Datastreams`. So: `(https://api-samenmeten.rivm.nl/v1.0/Things(7270)/Datastreams)`
+Now copy the link mentioned after `Datastreams`. So: [`https://api-samenmeten.rivm.nl/v1.0/Things(7270)/Datastreams`](https://api-samenmeten.rivm.nl/v1.0/Things(7270)/Datastreams)
 
 This results in the following response containing a list of measurements the sensor can return.
 ```
@@ -192,7 +193,7 @@ Press the 'Save' button on the setup page and do a Reset also. Now the current P
 
 #### Sensor community (server)
 
-Using a sensor community (Luftdaten) sensor is easy. Just select `'Sensor Community (server)'` from the list of sensors and fill in the sensor number. Every Sensor Community sensor has a 5-digit number that can be found in multiple ways, for instance using the map `(https://sensor.comunity)`. Search for your sensor on this map and click on it. Now the number appears, together with the current PM value. This number must be entered in the corresponding field.
+Using a sensor community (Luftdaten) sensor is easy. Just select `'Sensor Community (server)'` from the list of sensors and fill in the sensor number. Every Sensor Community sensor has a 5-digit number that can be found in multiple ways, for instance using the map [`https://sensor.community`](https://sensor.community). Search for your sensor on this map and click on it. Now the number appears, together with the current PM value. This number must be entered in the corresponding field.
 
 #### Sensor community (local)
 
@@ -204,6 +205,6 @@ In future versions, the Scapeler sensors will be supported. They are working on 
 
 #### Open Meteo data (wind, temperature)
 
-In the 'Setup sensor' screen, select 'Open Meteo'. Now entering the lat/long coordinates of your desired location is important. The most easy way is to go to [Google Maps](https://maps.google.com) and go to the desired location, left-mousbutton press reveals the lat/long coordinates. For example '52.38150558737995, 4.635996278654743' for the center of Haarlem (Grote Markt). Selecting the coordinates from the menu copies them. You can paste the values in the lat/long fields in the setup page.
+In the 'Setup sensor' screen, select 'Open Meteo'. Now entering the lat/long coordinates of your desired location is important. The most easy way is to go to [`Google Maps`](https://maps.google.com) and go to the desired location, left-mousbutton press reveals the lat/long coordinates. For example '52.38150558737995, 4.635996278654743' for the center of Haarlem (Grote Markt). Selecting the coordinates from the menu copies them. You can paste the values in the lat/long fields in the setup page.
 
 After 'Save' and 'Reset', the display should show the current wind force, temperature, direction and gusts of wind. Also the wind force unit can be chosen between Bft, km/h, m/s or Knots.
