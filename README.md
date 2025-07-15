@@ -1,14 +1,16 @@
 # Leon's Display
 ### An ESP8266 microcontroller with a small screen to display relevant data of your choice
 
-This project started when I became involved in ['Hollandse Luchten'](https://hollandse-luchten.org), a citizen science project in the Netherlands to measure particulate matter (PM2.5) in your environment. For that purpose, every member recieved a PM2.5 sensor to measure air quality. To be able to see the current PM2.5 level, it was necessary to go to a website with current readings. I thought that if that reading was displayed permanent, the user could better couple changes in the environment (smell of smoke, wind, fog, etc.) with changes in the PM2.5 reading.
+This project started when I became involved in ['Hollandse Luchten'](https://hollandse-luchten.org), a citizen science project in the Netherlands to measure particulate matter (PM<sub>2.5</sub>) in your environment. For that purpose, every member recieved a PM<sub>2.5</sub> sensor to measure the air quality. To be able to see the current PM<sub>2.5</sub> level, it was necessary to go to a website with current (or historic) readings. I thought that if that value was displayed permanently, the user could better couple changes in the environment (smell of smoke, wind, fog, etc.) with changes in the PM<sub>2.5</sub> value and thus in air quality.
 
-So, I figured that a small display and an ESP microcontroller could do the trick. Figuring out the API to get the readings from the sensors was not that hard. Problem is that this value that can be retrieved from the server is the mean value, measured over an hour, an hour ago. Not very precise, but things will change in the future. I also added the possibility to read out Luftdaten Sensors as published on [sensor.community](https://sensor.community). I am now adding more sensor types. The current situation is that the following data can be shown:
-* PM2.5 level from Sodaq Air sensors of ['Hollandse Luchten'](https://hollandse-luchten.org) (mean value, an hour ago)
-* PM2.5 level of Luftdaten sensors via the [sensor.community](https://sensor.community) server (real-time value)
-* PM2.5 level of Luftdaten sensors via the local interface of the sensor (real time value)
-* Wind speed, gusts, direction and temperature for a given Lat/Long location
-* PM2.5 level of Scapeler sensors (Future, work in progress)
+So, I figured that a small display and an ESP microcontroller could do the trick. Figuring out the API to get the readings from the sensors was not that hard. Problem with the server of Hollandse Luchten is that the PM<sub>2.5</sub> value that can be retrieved is the mean value, measured over an hour, an hour ago. Not very precise, but things will change in the future (I hope). I also added the possibility to read out values from Luftdaten Sensors, as published on [sensor.community](https://sensor.community). I am now adding more sensor types. Also I added the possibility to show wind speed (and gusts) and temperature from a specified location on the world.
+
+The current situation is that the following data can be shown:
+* PM<sub>2.5</sub> level from Sodaq Air sensors of ['Hollandse Luchten'](https://hollandse-luchten.org) (mean value, an hour ago)
+* PM<sub>2.5</sub> level of Luftdaten sensors via the [sensor.community](https://sensor.community) server (real-time value)
+* PM<sub>2.5</sub> level of Luftdaten sensors via the local interface of the sensor (real time value)
+* Wind speed, gusts, direction and temperature for a given Lat/Long location (real time value)
+* PM<sub>2.5</sub> level of Scapeler sensors (future, work in progress)
 
 ![Leon's display showing a PM2.5 value](/leon's-display.jpg)
 
@@ -17,7 +19,7 @@ So, I figured that a small display and an ESP microcontroller could do the trick
 ### What you need:
 * Wemos D1 Mini V3 or V4, ESP8266 Development board. [Buy here](https://www.otronic.nl/en/wemos-d1-mini-v3-esp8266-wifi-ch340-development-bo.html)
 * SSD1306 Mini OLED display 0.96 inch 128x64 I2C. [Buy here](https://www.otronic.nl/en/mini-oled-display-white-096-inch-128x64-i2c.html)
-* A 3D printed case. [download here](https://www.thingiverse.com/thing:2884823)
+* A 3D printed case. [download the design here](https://www.thingiverse.com/thing:2884823)
 * Some thin wire
 
 ### Assembly
@@ -29,21 +31,18 @@ If you haven't bought the pre-soldered version, connect the display to the contr
 * GND to GND
 
 Using some (hot)glue, put the display in the case (connector facing down, see picture). Slide the controller board into the horizontal slot of the case, see picture.
-Close the case
+Close the case.
  
-Connect a USB cable to your computer and verify that the display has been connected well. Then flash the firmware to the controller. This can be done in two ways:
+Connect a USB cable to your computer for power and verify that the display has been connected well. It should display something. If it does, you are ready for the next step.
+Then flash the firmware to the controller. This can be done in two ways:
 * download the [compiled firmware file](https://github.com/Wubbe/Leon-s-display/blob/main/Leon-s-display.ino.bin) and use a web flasher like [esp.huhn.me](https://esp.huhn.me/) or a dedicated flasher like [Nodemcu Pyflasher](https://github.com/marcelstoer/nodemcu-pyflasher) to write the firmware to the board (recommended).
-* open the source file in the Arduino development environment and compile/build the file and write it to the controller (more difficult).
-
-Or, order a pre-flashed controller, including display and a optionally a 3D printed case by sending me an email. I can do the soldering also, if you prefer.
+* Order a pre-flashed controller, including display and a optionally a 3D printed case by sending me an email. I can do the soldering also, if you prefer.
 
 Future versions of the firmware can be updated via the interface of the controller itself. It has the possibility to upgrade OTA (over the air).
 
-If you connect the controller to power, using a USB-C cable, check if the display shows something.
-
 ## How to buy one
 
-If you don't want to solder and flash the firmware, just email me for a pre-flashed controller and display or a soldered one. I also can build you a complete one, including the 3D printed casing.
+If you don't want to solder and flash the firmware, just email me for a pre-flashed controller and display or a soldered one. I also can build you a complete one, including the 3D printed case.
 
 ### Prices
 
@@ -53,18 +52,21 @@ If you don't want to solder and flash the firmware, just email me for a pre-flas
 
 ## How to use it
 
-If the device is build and assembled well, it must be configured to retrieve and show the data of your choice. This is achieved in two steps:
+If the device is build and assembled well, with the right firmware, it must be configured to retrieve and show the data of your choice. This is achieved in two steps:
 - Setup WiFi
 - Setup Sensor
 
 ### Setup WiFi
 
-To be able to operate, the display must be connected to the internet. This is done in multiple steps. The first step is that after the display is connected to power (a usb charger) the display appears as an access point with the name 'Setup Leon's Display'. Connect to this access point using the WiFi settings of your phone or laptop. Then open a browser and type the ip number that is mentioned on the display. In most cases it will be 192.168.1.4. Now the setup page of the display appears. Press the button 'Setup WiFi'. Fill in your WiFi settings (ssid and password). Reset the device as is shown.
-If everything went well, the device now resets and connects to your WiFi network and can be accessed by typing `leon-s-display.local` in your browser. If that does not work look at the display and type the ip number that is mentioned there. Again, the Setup page of the display should appear.
+To be able to operate, the device must be connected to the internet. This is done in multiple steps. The first step is that after the display is connected to power (a usb charger) the display appears as an access point with the name `Setup Leon's Display`. Connect to this access point using the WiFi settings of your phone or laptop. Then open a browser and type the ip number that is mentioned on the display. In most cases it will be `192.168.1.4`. Now the setup page of the display appears in your browser. Press the button 'Setup WiFi'. Fill in your WiFi settings (ssid and password) and reset the device as is shown.
+
+If everything went well, the device connects to your WiFi network and can be accessed by typing `leon-s-display.local` in your browser. If that does not work look at the display and type the ip number that is mentioned there. Again, the Setup page of the display should appear in your browser.
 
 Next step is to setup the sensor of your choice.
 
 ### Setup Sensors
+
+Select the sensor of your choice in the `Setup Sensor` screen.
 
 #### Hollandse Luchten
 
@@ -181,14 +183,12 @@ This results in the following response containing a list of measurements the sen
 }
 ```
 
-This response contains all the data that the sensor returns. Temperature, Humidity, PM2.5 (calibrated) and PM2.5 (not calibrated). We take the calibrated version as it has a correction to avoid too high values that aren't accurate. Using this PM2.5 value, look at he link after Observations and note the number that is mentioned there.
-In this case it is number 38617.
-
+This response contains all the data that the sensor returns. Temperature, Humidity, PM<sub>2.5</sub> (calibrated) and PM<sub>2.5</sub> (not calibrated). We take the calibrated version as it has a correction to avoid too high values that aren't accurate. Using this PM<sub>2.5</sub> value, look at he link after Observations and note the number that is mentioned there. In this case it is number 38617.
 We have found it. Finally!
 
 Now, go to the setup page of the display, choose 'Hollandse Luchten (Sodaq) as sensor and fill 38617 (fill in your number) as sensor number.
 
-Press the 'Save' button on the setup page and do a Reset also. Now the current PM2.5 value should appear.
+Press the 'Save' button on the setup page and do a Reset also. Now the current PM<sub>2.5</sub> value of the specified sensor should appear.
 
 #### Sensor community (server)
 
@@ -206,4 +206,4 @@ In future versions, the Scapeler sensors will be supported. They are working on 
 
 In the 'Setup sensor' screen, select 'Open Meteo'. Now entering the lat/long coordinates of your desired location is important. The most easy way is to go to [Google Maps](https://maps.google.com) and go to the desired location, left-mousbutton press reveals the lat/long coordinates. For example '52.38150558737995, 4.635996278654743' for the center of Haarlem (Grote Markt). Selecting the coordinates from the menu copies them. You can paste the values in the lat/long fields in the setup page.
 
-After 'Save' and 'Reset', the display should show the current wind force, temperature, direction and gusts of wind. Also the wind force unit can be chosen between Bft,km/h, m/s or Knots.
+After 'Save' and 'Reset', the display should show the current wind force, temperature, direction and gusts of wind. Also the wind force unit can be chosen between Bft, km/h, m/s or Knots.
