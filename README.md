@@ -30,7 +30,7 @@ If you haven't bought the pre-soldered version, connect the display to the contr
 * SDA to D2
 * GND to GND
 
-Using some (hot)glue, put the display in the case (connector facing down, see picture). Slide the controller board into the horizontal slot of the case, see picture.
+Using some (hot)glue, put the display in the case (connector facing up, see picture). Slide the controller board into the horizontal slot of the case, see picture.
 Close the case.
  
 Connect a USB cable to your computer for power and verify that the display has been connected well. It should display something. If it does, you are ready for the next step.
