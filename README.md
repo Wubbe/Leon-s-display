@@ -46,9 +46,9 @@ If you don't want to solder and flash the firmware, just email me for a pre-flas
 
 ### Prices
 
-- Flashed controller and display to solder yourselve
-- Flashed controller and display, soldered
-- Flashed controller and display, soldered and assembled in a casing.
+- Flashed controller and display to solder yourselve. € 12,50 (ex. shipping)
+- Flashed controller and display, soldered. € 15,- (ex. shipping)
+- Flashed controller and display, soldered and assembled in a casing: € 25,- (ex. shipping)
 
 ## How to use it
 
@@ -58,7 +58,7 @@ If the device is build and assembled well, with the right firmware, it must be c
 
 ### Setup WiFi
 
-To be able to operate, the device must be connected to the internet. This is done in multiple steps. The first step is that after the display is connected to power (a usb charger) the display appears as an access point with the name `Setup Leon's Display`. Connect to this access point using the WiFi settings of your phone or laptop. Then open a browser and type the ip number that is mentioned on the display. In most cases it will be `192.168.1.4`. Now the setup page of the display appears in your browser. Press the button 'Setup WiFi'. Fill in your WiFi settings (ssid and password) and reset the device as is shown.
+To be able to operate, the device must be connected to the internet. This is done in multiple steps. The first step is that after the display is connected to power (a usb charger) the display appears as a WiFi access point with the name `Setup Leon's Display`. Connect to this access point using the WiFi settings of your phone or laptop. Then open a browser and type the ip number that is mentioned on the display. In most cases it will be `192.168.1.4`. Now the setup page of the display appears in your browser. Press the button 'Setup WiFi'. Fill in your WiFi settings (ssid and password) and reset the device as is shown.
 
 If everything went well, the device connects to your WiFi network and can be accessed by typing `leon-s-display.local` in your browser. If that does not work look at the display and type the ip number that is mentioned there. Again, the Setup page of the display should appear in your browser.
 
