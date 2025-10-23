@@ -19,7 +19,7 @@ The current situation is that the following data can be shown:
 ### What you need:
 * Wemos D1 Mini V3 or V4, ESP8266 Development board. [Buy here](https://www.otronic.nl/en/wemos-d1-mini-v3-esp8266-wifi-ch340-development-bo.html)
 * SSD1306 Mini OLED display 0.96 inch 128x64 I2C. [Buy here](https://www.otronic.nl/en/mini-oled-display-white-096-inch-128x64-i2c.html)
-* A 3D printed case. [download the design here](https://www.thingiverse.com/thing:2884823)
+* A 3D printed case. [I have found this case to print, but it isn't perfect](https://www.thingiverse.com/thing:2884823). The development board does not fit perfectly in this case. I am still searching for a better case.
 * Some thin wire
 
 ### Assembly
@@ -48,7 +48,7 @@ If you don't want to solder and flash the firmware, just email me for a pre-flas
 
 - Flashed controller and display to solder yourselve. € 12,50 (ex. shipping)
 - Flashed controller and display, soldered. € 15,- (ex. shipping)
-- Flashed controller and display, soldered and assembled in a casing: € 25,- (ex. shipping)
+- Flashed controller and display, soldered and assembled in a casing: not available yet. I have used the proposed case in a few devices but the case could be improved. If I have foud the perfect case, I will offer a display, including the case.
 
 ## How to use it
 
